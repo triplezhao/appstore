@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">frame</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="hello_show">Hello Show!</string>
+    <string name="action_settings">Settings</string>
+
+  <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
+    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
+    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
+    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
+    the big cheese.</string>
+    <string name="checkin">Checkin</string>
+    <string name="menu_settings">Settings</string>
+
+
+    <string name="title_activity_show">ShowActivity</string>
+    <string name="str_tab_home">首页</string>
+    <string name="str_tab_guangchang">广场</string>
+    <string name="str_tab_msg">信息</string>
+    <string name="str_tab_my">我的</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="potato_loading">内容获取中...</string>
+    <string name="potato_loading_present">一大波礼物正在向您靠近...</string>
+    <string name="potato_loading_text">失败乃成功之母，刷新再试试</string>
+    <string name="potato_network_error">加载失败， 点击这里重新试试</string>
+    <string name="potato_content_empty">内容暂时为空，敬请等待~</string>
+    <string name="potato_no_net">哎呀，手机好像是没连上网~</string>
+    <string name="potato_net_timeout">网络不太给力哦，一会再试试~</string>
+    <string name="potato_data_exception">数据加载异常，请稍后重试</string>
+</resources>

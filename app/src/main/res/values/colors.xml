@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--other-->
+    <color name="progress_bar">#FF7E00</color>
+    <color name="window_background">#FFF5F5F5</color>
+
+    <color name="app_bg">#ECECEC</color>
+    <color name="sticker_blue">#1D6EC4</color>
+
+
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="card_margin">12dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_avatar_size">40dp</dimen>
+
+    <!-- 公共尺寸 -->
+    <dimen name="txt_min_ll">8sp</dimen>
+    <dimen name="txt_min_l">10sp</dimen>
+    <dimen name="txt_min">12sp</dimen>
+    <dimen name="txt_small">14sp</dimen>
+    <dimen name="txt_normal_l">15sp</dimen>
+    <dimen name="txt_normal">16sp</dimen>
+    <dimen name="txt_normal_b">17sp</dimen>
+    <dimen name="txt_mid">18sp</dimen>
+    <dimen name="txt_max">20sp</dimen>
+    <dimen name="txt_maxx">22sp</dimen>
+    <dimen name="mshow_header_title_text_size">23sp</dimen>
+    <dimen name="header_title_text_size">23sp</dimen>
+    <!-- 游戏模块dimension资源 start -->
+
+</resources>
