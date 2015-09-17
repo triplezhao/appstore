@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.potato.demo">
+    package="com.potato.appstore">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -66,21 +66,23 @@
         </activity>
 
         <!--demo-->
-        <activity android:name="com.potato.demo.a.ui.act.AActivity"></activity>
-        <activity android:name="com.potato.demo.a.ui.act.BActivity"></activity>
-        <activity android:name="com.potato.demo.a.ui.act.ADetailActivity"></activity>
+        <activity android:name="com.potato.appstore.a.ui.act.AActivity"></activity>
+        <activity android:name="com.potato.appstore.a.ui.act.BActivity"></activity>
+        <activity android:name="com.potato.appstore.a.ui.act.ADetailActivity"></activity>
 
         <!--jiongtu-->
-        <activity android:name="com.potato.demo.jiongtu.ui.act.JiongtuActivity"></activity>
-        <activity android:name="com.potato.demo.jiongtu.ui.act.JiongTuDetailActivity" android:hardwareAccelerated="true" ></activity>
+        <activity android:name="com.potato.appstore.store.ui.act.AppStoreActivity"></activity>
+        <!--jiongtu-->
+        <activity android:name="com.potato.appstore.jiongtu.ui.act.JiongtuActivity"></activity>
+        <activity android:name="com.potato.appstore.jiongtu.ui.act.JiongTuDetailActivity" android:hardwareAccelerated="true" ></activity>
 
         <!--youku-->
-        <activity android:name="com.potato.demo.youku.ui.act.YKActivity"  ></activity>
+        <activity android:name="com.potato.appstore.youku.ui.act.YKActivity"  ></activity>
         <activity android:name="com.potato.chips.common.WebViewActivity"  ></activity>
 
         <provider
             android:name="com.potato.library.net.RequestCacheProvider"
-            android:authorities="com.cyou.demo.RequestCacheProvider" />
+            android:authorities="com.potato.appstore.RequestCacheProvider" />
     </application>
 
 </manifest>

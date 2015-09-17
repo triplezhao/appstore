@@ -2,7 +2,7 @@ package com.potato.chips.base;
 
 import android.database.Cursor;
 
-import com.potato.demo.youku.data.bean.YKVideo;
+import com.potato.appstore.youku.data.bean.YKVideo;
 
 import org.json.JSONException;
 import org.json.JSONObject;

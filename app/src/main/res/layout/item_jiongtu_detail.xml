@@ -5,7 +5,7 @@
 
         <variable
             name="bean"
-            type="com.potato.demo.jiongtu.data.bean.JiongtuPhoto" />
+            type="com.potato.appstore.jiongtu.data.bean.JiongtuPhoto" />
     </data>
 
     <LinearLayout

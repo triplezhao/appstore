@@ -19,7 +19,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
-import com.potato.demo.R;
+import com.potato.appstore.R;
 import com.potato.chips.util.PhoneUtils;
 import com.potato.chips.util.UIUtils;
 import com.potato.library.util.L;

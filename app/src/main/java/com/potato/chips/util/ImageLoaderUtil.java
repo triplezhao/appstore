@@ -4,7 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.potato.demo.R;
+import com.potato.appstore.R;
 import com.potato.chips.app.MainApplication;
 import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;

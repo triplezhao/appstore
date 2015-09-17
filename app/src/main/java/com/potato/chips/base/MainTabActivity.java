@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.potato.demo.R;
-import com.potato.demo.a.ui.act.AActivity;
-import com.potato.demo.a.ui.act.BActivity;
-import com.potato.demo.jiongtu.ui.act.JiongtuActivity;
-import com.potato.demo.youku.ui.act.YKActivity;
+import com.potato.appstore.R;
+import com.potato.appstore.a.ui.act.BActivity;
+import com.potato.appstore.jiongtu.ui.act.JiongtuActivity;
+import com.potato.appstore.store.ui.act.AppStoreActivity;
 
 public class MainTabActivity extends BaseTabHostActivity {
 
@@ -30,7 +29,7 @@ public class MainTabActivity extends BaseTabHostActivity {
                 iv_icon.setImageResource(R.drawable.selector_nav_home);
                 tabItem.setTitle("" + position);
                 tabItem.setView(tabItemView);
-                tabItem.setIntent(new Intent(getApplication(), JiongtuActivity.class));
+                tabItem.setIntent(new Intent(getApplication(), AppStoreActivity.class));
                 break;
 
             case 1:
@@ -38,24 +37,9 @@ public class MainTabActivity extends BaseTabHostActivity {
                 iv_icon.setImageResource(R.drawable.selector_nav_explore);
                 tabItem.setTitle("" + position);
                 tabItem.setView(tabItemView);
-                tabItem.setIntent(new Intent(getApplication(), YKActivity.class));
+                tabItem.setIntent(new Intent(getApplication(), JiongtuActivity.class));
                 break;
             case 2:
-
-                iv_icon.setImageResource(R.drawable.selector_nav_workout);
-
-                tabItem.setTitle("" + position);
-                tabItem.setView(tabItemView);
-                tabItem.setIntent(new Intent(getApplication(), AActivity.class));
-                break;
-            case 3:
-
-                iv_icon.setImageResource(R.drawable.selector_nav_contact);
-                tabItem.setTitle("" + position);
-                tabItem.setView(tabItemView);
-                tabItem.setIntent(new Intent(getApplication(), BActivity.class));
-                break;
-            case 4:
 
                 iv_icon.setImageResource(R.drawable.selector_nav_profile);
                 tabItem.setTitle("" + position);
@@ -69,7 +53,7 @@ public class MainTabActivity extends BaseTabHostActivity {
 
     @Override
     protected int getTabItemCount() {
-        return 5;
+        return 3;
     }
 
     @Override

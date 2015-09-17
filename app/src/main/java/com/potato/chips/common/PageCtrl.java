@@ -7,8 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.potato.demo.jiongtu.data.bean.JiongtuAlbum;
-import com.potato.demo.jiongtu.ui.act.JiongTuDetailActivity;
+import com.potato.appstore.jiongtu.data.bean.JiongtuAlbum;
+import com.potato.appstore.jiongtu.ui.act.JiongTuDetailActivity;
 import com.potato.library.util.L;
 
 

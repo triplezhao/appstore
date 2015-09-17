@@ -22,7 +22,7 @@
 
         <variable
             name="bean"
-            type="com.potato.demo.jiongtu.data.bean.JiongtuAlbum" />
+            type="com.potato.appstore.jiongtu.data.bean.JiongtuAlbum" />
     </data>
 
     <RelativeLayout

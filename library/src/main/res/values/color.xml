@@ -20,4 +20,19 @@
     <color name="google_green">#008744</color>
     <color name="google_yellow">#ffa700</color>
 
+
+    <!-- 通用按钮背景按下遮罩的颜色，白色遮罩 -->
+    <color name="global_bt_mask">#44ffffff</color>
+    <!-- 通用按钮背景的颜色 -->
+    <color name="global_bt_bg_gray">#bac1cc</color>
+    <color name="global_bt_bg_blue">#1eaffc</color>
+    <color name="global_bt_bg_blue_s">#188cca</color>
+    <color name="global_bt_bg_green">#52ca8d</color>
+    <color name="global_bt_bg_green_s">#42a271</color>
+    <color name="global_bt_bg_red">#f06239</color>
+    <color name="global_bt_bg_orange">#ffa633</color>
+    <color name="global_bt_bg_orange_sub">#ffb108</color>
+    <color name="global_bt_bg_yellow">#ffba20</color>
+
+
 </resources>

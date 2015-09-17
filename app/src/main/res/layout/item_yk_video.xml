@@ -5,7 +5,7 @@
 
         <variable
             name="bean"
-            type="com.potato.demo.youku.data.bean.YKVideo" />
+            type="com.potato.appstore.youku.data.bean.YKVideo" />
     </data>
 
     <LinearLayout
