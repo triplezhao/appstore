@@ -33,11 +33,14 @@
         android:paddingRight="16dp"
         android:paddingTop="8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
-             />
+            android:scaleType="fitXY"
+            app:riv_corner_radius="40dip"
+            app:riv_border_color="#333333"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.potato.appstore.R;
 import com.potato.appstore.databinding.ActivityBBinding;
 import com.potato.chips.base.BaseActivity;
-import com.squareup.picasso.Picasso;
+import com.potato.chips.util.ImageLoaderUtil;
 
 public class BActivity extends BaseActivity {
 
@@ -15,10 +15,9 @@ public class BActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_show);
 //        ImageView iv = (ImageView)findViewById(R.id.iv_icon);
-         ActivityBBinding binding = DataBindingUtil.setContentView(
+        ActivityBBinding binding = DataBindingUtil.setContentView(
                 this, R.layout.activity_b);
-
-        Picasso.with(getBaseContext()).load("http://tvfan.kyodo.co.jp/wp-content/uploads/2015/01/15027b37a4104edd85fb5b79a6c9e3ac-344x516.jpg").placeholder(R.drawable.cheese_1).into(binding.ivIcon);
+        ImageLoaderUtil.displayImage("http://tvfan.kyodo.co.jp/wp-content/uploads/2015/01/15027b37a4104edd85fb5b79a6c9e3ac-344x516.jpg",binding.ivIcon, R.drawable.cheese_1);
     }
 
 }

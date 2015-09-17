@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.potato.appstore.R;
 import com.potato.appstore.databinding.ItemAppListBinding;
 import com.potato.appstore.store.data.bean.AppInfo;
@@ -28,7 +29,7 @@ public class AppListViewBinder extends BaseViewBinder<AppListViewBinder.ViewHold
 
         ItemAppListBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
-                R.layout.item_app_list,
+                com.potato.appstore.R.layout.item_app_list,
                 parent,
                 false);
         ViewHolder holder = new ViewHolder(binding.getRoot());

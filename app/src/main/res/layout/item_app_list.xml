@@ -31,15 +31,14 @@
                 android:orientation="horizontal"
                 android:padding="5dp">
 
-                <com.potato.library.view.CornerRectangleImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/iv_pic"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:scaleType="fitXY"
-                    app:corner="5"
-                    app:corner_color="@color/app_bg"
-                    />
-
+                    app:riv_corner_radius="40dip"
+                    app:riv_border_color="#333333"
+                     />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
