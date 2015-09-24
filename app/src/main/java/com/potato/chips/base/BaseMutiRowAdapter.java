@@ -19,7 +19,6 @@ public abstract class BaseMutiRowAdapter extends BaseAdapter {
     ;
     public LayoutInflater mInflater;
 
-    public BaseViewBinder mViewBinder;
 
     public BaseMutiRowAdapter(Context context) {
         this.mContext = context;
@@ -79,7 +78,7 @@ public abstract class BaseMutiRowAdapter extends BaseAdapter {
             viewGroup.setOrientation(LinearLayout.HORIZONTAL);
             //findview  clumn
             for (int i = 0; i < getRowNum(); i++) {
-                BaseViewHolder vh = mViewBinder.onCreateViewHolder(position, getItemViewType(position), parent);
+                BaseViewHolder vh = onCreateViewHolder(position, getItemViewType(position), parent);
                 viewGroup.addView(vh.view, layoutParams);
             }
         }
@@ -92,7 +91,7 @@ public abstract class BaseMutiRowAdapter extends BaseAdapter {
             } catch (Exception e) {
             }
             if (data != null) {
-                mViewBinder.onBindViewHolder((BaseViewHolder) viewGroup.getChildAt(i).getTag(), data, position, getItemViewType(position));
+                onBindViewHolder((BaseViewHolder) viewGroup.getChildAt(i).getTag(), data, position, getItemViewType(position));
                 viewGroup.getChildAt(i).setVisibility(View.VISIBLE);
             } else {
                 viewGroup.getChildAt(i).setVisibility(View.INVISIBLE);
@@ -100,4 +99,10 @@ public abstract class BaseMutiRowAdapter extends BaseAdapter {
         }
         return viewGroup;
     }
+
+    //返回 inflate出 每个元素的 layout，可以根据type给不同的布局
+    public abstract BaseViewHolder onCreateViewHolder(int position, int type, ViewGroup parent);
+
+    //将数据设置到itemView上
+    public abstract void onBindViewHolder(BaseViewHolder holder,Object bean, int position, int type);
 }

@@ -35,7 +35,7 @@
 
         </com.potato.library.view.NormalEmptyView>
 
-        <com.potato.library.view.refresh.RefreshListView
+        <com.potato.library.view.refresh.ListSwipeLayout
             android:id="@+id/swipe_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -51,7 +51,7 @@
                 android:listSelector="@android:color/transparent"
                 android:scrollbars="none" />
 
-        </com.potato.library.view.refresh.RefreshListView>
+        </com.potato.library.view.refresh.ListSwipeLayout>
 
 
     </LinearLayout>

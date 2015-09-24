@@ -2,8 +2,6 @@ package com.potato.chips.base;
 
 import android.database.Cursor;
 
-import com.potato.appstore.youku.data.bean.YKVideo;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,11 +13,11 @@ public class BaseBean {
         return null;
     }
 
-    public static YKVideo createFromCursor(Cursor cursor) {
+    public static BaseBean createFromCursor(Cursor cursor) {
         return null;
     }
 
-    public static YKVideo createFromJSON(JSONObject json) throws JSONException {
+    public static BaseBean createFromJSON(JSONObject json) throws JSONException {
         return null;
     }
 }

@@ -29,13 +29,13 @@ import com.potato.appstore.databinding.FragmentAppListBinding;
 import com.potato.appstore.store.data.bean.AppInfo;
 import com.potato.appstore.store.data.parser.AppInfoListParser;
 import com.potato.appstore.store.data.request.AppStoreRequestBuilder;
-import com.potato.appstore.store.ui.viewbinder.AppListViewBinder;
+import com.potato.appstore.store.ui.adapter.AppListAdapter;
 import com.potato.chips.base.BaseFragment;
 import com.potato.chips.base.BaseListAdapter;
 import com.potato.library.net.Request;
 import com.potato.library.net.RequestManager;
 import com.potato.library.util.L;
-import com.potato.library.view.refresh.RefreshListView;
+import com.potato.library.view.refresh.ListSwipeLayout;
 
 import java.util.ArrayList;
 
@@ -70,7 +70,7 @@ public class AppListFragment extends BaseFragment {
         mParser = new AppInfoListParser();
         mBinding.swipeContainer.setFooterView(getActivity(), mBinding.list, R.layout.listview_footer);
 
-        mAdapter = new BaseListAdapter(getActivity(), new AppListViewBinder());
+        mAdapter = new AppListAdapter(mContext);
         mBinding.list.setAdapter(mAdapter);
 
         mBinding.swipeContainer.setColorSchemeResources(R.color.google_blue,
@@ -84,7 +84,7 @@ public class AppListFragment extends BaseFragment {
                 sendRequest2RefreshList();
             }
         });
-        mBinding.swipeContainer.setOnLoadListener(new RefreshListView.OnLoadListener() {
+        mBinding.swipeContainer.setOnLoadListener(new ListSwipeLayout.OnLoadListener() {
             @Override
             public void onLoad() {
                 sendRequest2LoadMoreList();

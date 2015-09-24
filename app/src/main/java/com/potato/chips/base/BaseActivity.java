@@ -5,13 +5,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener, Handler.Callback {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener, Handler.Callback, ActionMode.Callback {
     public Context mContext = null;
     public Handler mHandler = null;
-
     /** extrars */
     /** views */
     /** adapters */
@@ -57,4 +59,23 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
     }
 
+    @Override
+    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        return false;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode actionMode) {
+
+    }
 }

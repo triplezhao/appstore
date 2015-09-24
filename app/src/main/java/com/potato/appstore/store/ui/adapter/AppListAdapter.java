@@ -1,4 +1,4 @@
-package com.potato.appstore.store.ui.viewbinder;
+package com.potato.appstore.store.ui.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -7,47 +7,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.potato.appstore.R;
 import com.potato.appstore.databinding.ItemAppListBinding;
 import com.potato.appstore.store.data.bean.AppInfo;
-import com.potato.chips.base.BaseViewBinder;
+import com.potato.chips.base.BaseListAdapter;
 import com.potato.chips.base.BaseViewHolder;
 import com.potato.chips.util.ImageLoaderUtil;
 import com.potato.chips.util.UIUtils;
 
 /**
- * Created by ztw on 2015/7/22.
+ * Created by ztw on 2015/9/24.
  */
-public class AppListViewBinder extends BaseViewBinder<AppListViewBinder.ViewHolder> {
+public class AppListAdapter  extends BaseListAdapter{
 
-    public AppListViewBinder() {
+    public AppListAdapter(Context context) {
+        super(context);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(int position, int type, ViewGroup parent) {
+    public VH onCreateViewHolder(int position, int type, ViewGroup parent) {
 
         ItemAppListBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 com.potato.appstore.R.layout.item_app_list,
                 parent,
                 false);
-        ViewHolder holder = new ViewHolder(binding.getRoot());
+        VH holder = new VH(binding.getRoot());
         holder.setBinding(binding);
 
         return holder;
     }
 
+
     @Override
-    public void onBindViewHolder(ViewHolder holder, Object object, int position, int type) {
-        ItemAppListBinding binding = (ItemAppListBinding) holder.getBinding();
+    public void onBindViewHolder(BaseViewHolder holder, Object object, int position, int type) {
+        ItemAppListBinding binding = (ItemAppListBinding) ((VH)holder).getBinding();
         final AppInfo bean = (AppInfo)object;
         binding.setBean(bean);
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                UIUtils.toast(context,"下载apk");
+                UIUtils.toast(context, "下载apk");
 //                PageCtrl.startJiongTuDetailActivity(context, bean);
             }
         });
@@ -59,11 +60,11 @@ public class AppListViewBinder extends BaseViewBinder<AppListViewBinder.ViewHold
         ImageLoaderUtil.displayImage(bean.getBigCover(), binding.ivPic, R.drawable.def_gray_small);
     }
 
-    public static class ViewHolder extends BaseViewHolder {
+    public static class VH extends BaseViewHolder {
 
         private ViewDataBinding binding;
 
-        public ViewHolder(View itemView) {
+        public VH(View itemView) {
             super(itemView);
         }
 

@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseListAdapter extends BaseAdapter {
+public abstract class BaseListAdapter extends BaseAdapter {
 
     public Context mContext;
 
@@ -17,12 +17,10 @@ public class BaseListAdapter extends BaseAdapter {
     ;
     public LayoutInflater mInflater;
 
-    public BaseViewBinder mViewBinder;
 
-    public BaseListAdapter(Context context,BaseViewBinder viewBinder) {
+    public BaseListAdapter(Context context) {
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
-        mViewBinder = viewBinder;
     }
 
     //返回绑定的数据
@@ -65,12 +63,19 @@ public class BaseListAdapter extends BaseAdapter {
         BaseViewHolder vh;
         if (convertView == null) {
             //findview  clumn
-            vh = mViewBinder.onCreateViewHolder(position, getItemViewType(position), parent);
+            vh = onCreateViewHolder(position, getItemViewType(position), parent);
             convertView = vh.view;
         } else {
             vh = (BaseViewHolder) convertView.getTag();
         }
-        mViewBinder.onBindViewHolder(vh, mData.get(position), position, getItemViewType(position));
+        onBindViewHolder( vh, mData.get(position), position, getItemViewType(position));
         return convertView;
     }
+
+
+    //返回 inflate出 每个元素的 layout，可以根据type给不同的布局
+    public abstract BaseViewHolder onCreateViewHolder(int position, int type, ViewGroup parent);
+
+    //将数据设置到itemView上
+    public abstract void onBindViewHolder(BaseViewHolder holder,Object bean, int position, int type);
 }
