@@ -2,6 +2,8 @@ package com.potato.chips.base;
 
 import android.view.ViewGroup;
 
+import com.potato.library.adapter.BaseViewHolder;
+
 /**
  * Created by ztw on 2015/7/22.
  */

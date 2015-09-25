@@ -13,6 +13,7 @@ import com.potato.appstore.store.data.bean.AppSection;
 import com.potato.appstore.store.data.parser.AppSectionListParser;
 import com.potato.appstore.store.data.request.AppStoreRequestBuilder;
 import com.potato.appstore.store.ui.fragment.AppListFragment;
+import com.potato.appstore.store.ui.fragment.AppListRecycleFragment;
 import com.potato.chips.base.BaseActivity;
 import com.potato.library.net.Request;
 import com.potato.library.net.RequestManager;
@@ -103,8 +104,8 @@ public class AppStoreActivity extends BaseActivity {
             L.d("In ViewPager#getItem, header: " + obj.getTitle() + ", position: "
                     + position);
             Bundle args = new Bundle();
-            args.putLong(AppListFragment.EXTRARS_SECTION_ID, obj.getSectionId());
-            args.putString(AppListFragment.EXTRARS_TITLE, obj.getTitle());
+            args.putLong(AppListRecycleFragment.EXTRARS_SECTION_ID, obj.getSectionId());
+            args.putString(AppListRecycleFragment.EXTRARS_TITLE, obj.getTitle());
             AppListFragment pageFragement = (AppListFragment) Fragment.instantiate(mContext, AppListFragment.class.getName(), args);
             return pageFragement;
         }

@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
+import com.aspsine.multithreaddownload.DownloadConfiguration;
+import com.aspsine.multithreaddownload.DownloadManager;
+import com.aspsine.multithreaddownload.util.FileUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.potato.chips.util.ImageLoaderUtil;
 import com.potato.chips.util.PhoneUtils;
@@ -54,6 +57,7 @@ public class MainApplication extends Application {
 //        instence.setUserAgent(PhoneUtils.getDeviceUA(context));
 //        initPicasso();
         initUIL();
+        initDownloader();
 
     }
 
@@ -95,5 +99,13 @@ public class MainApplication extends Application {
         displayMetrices = PhoneUtils.getAppWidthAndHeight(this);
         screenHight = displayMetrices.heightPixels;
         screenWidth = displayMetrices.widthPixels;
+    }
+
+    private void initDownloader() {
+        DownloadConfiguration configuration = new DownloadConfiguration();
+        configuration.setDownloadDir(FileUtils.getDefaultDownloadDir(getApplicationContext()));
+        configuration.setMaxThreadNum(10);
+        DownloadManager.getInstance().init(getApplicationContext(), configuration);
+
     }
 }

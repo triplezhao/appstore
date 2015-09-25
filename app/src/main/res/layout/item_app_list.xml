@@ -6,7 +6,7 @@
 
         <variable
             name="bean"
-            type="com.potato.appstore.store.data.bean.AppInfo" />
+            type="com.potato.appstore.store.data.bean.ApkInfo" />
     </data>
 
     <LinearLayout
@@ -17,11 +17,11 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:cardBackgroundColor="@color/app_bg"
             app:cardCornerRadius="@dimen/cardview_default_radius"
             app:cardElevation="5dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
+            android:foreground="?attr/selectableItemBackground"
             >
 
             <LinearLayout
@@ -61,16 +61,15 @@
                         android:layout_marginBottom="0dp"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="@{bean.getTitle}"
+                        android:text="@{bean.getName}"
                         android:textSize="@dimen/txt_min" />
                 </RelativeLayout>
 
-                <TextView
+                <Button
                     android:id="@+id/tv_download"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/selector_bg_orange"
                     android:padding="20dp"
                     android:text="@string/str_download" />
             </LinearLayout>

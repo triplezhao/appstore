@@ -11,28 +11,35 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.potato.appstore.R;
-import com.potato.appstore.databinding.ItemAppListBinding;
+import com.potato.appstore.databinding.ItemAppBinding;
 import com.potato.appstore.store.data.bean.ApkInfo;
+import com.potato.appstore.store.ui.fragment.AppListRecycleFragment;
 import com.potato.chips.util.ImageLoaderUtil;
 import com.potato.chips.util.UIUtils;
-import com.potato.library.adapter.BaseListAdapter;
+import com.potato.library.adapter.BaseRecyclerViewAdapter;
 import com.potato.library.adapter.BaseViewHolder;
+
 
 /**
  * Created by ztw on 2015/9/24.
  */
-public class AppListAdapter extends BaseListAdapter {
+public class AppRecyclerAdapter extends BaseRecyclerViewAdapter {
 
-    public AppListAdapter(Context context) {
+    AppListRecycleFragment mFm = null;
+
+    public AppRecyclerAdapter(Context context) {
         super(context);
     }
 
+    public void setFragment(AppListRecycleFragment fm){
+        mFm = fm;
+    }
     @Override
-    public VH onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
 
-        ItemAppListBinding binding = DataBindingUtil.inflate(
+        ItemAppBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
-                R.layout.item_app_list,
+                R.layout.item_app,
                 parent,
                 false);
         VH holder = new VH(binding.getRoot());
@@ -41,20 +48,31 @@ public class AppListAdapter extends BaseListAdapter {
         return holder;
     }
 
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,int position) {
-        ItemAppListBinding binding = (ItemAppListBinding) ((VH) holder).getBinding();
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        ItemAppBinding binding = (ItemAppBinding) ((VH) holder).getBinding();
         final ApkInfo bean = (ApkInfo) mData.get(position);
         binding.setBean(bean);
-        ImageLoaderUtil.displayImage(bean.getImage(), binding.ivPic, R.drawable.def_gray_small);
+        ImageLoaderUtil.displayImage(bean.getImage(), binding.ivIcon, R.drawable.def_gray_small);
 
+        binding.tvName.setText(bean.getName());
+        binding.tvDownloadPerSize.setText(bean.getDownloadPerSize());
+        binding.tvStatus.setText(bean.getStatusText());
+        binding.progressBar.setProgress(bean.getProgress());
+        binding.btnDownload.setText(bean.getButtonText());
 
-        binding.tvDownload.setOnClickListener(new View.OnClickListener() {
+        binding.btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                if (mFm!=null) {
+//                    mFm.download(position,bean);
+//                }
                 Uri uri = Uri.parse(bean.getUrl());
                 Intent downloadIntent = new Intent(Intent.ACTION_VIEW, uri);
                 v.getContext().startActivity(downloadIntent);
+
             }
         });
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
@@ -69,6 +87,8 @@ public class AppListAdapter extends BaseListAdapter {
 
 
     }
+
+
 
     public static class VH extends BaseViewHolder {
 

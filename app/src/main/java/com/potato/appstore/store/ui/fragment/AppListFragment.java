@@ -18,6 +18,7 @@ package com.potato.appstore.store.ui.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -26,18 +27,21 @@ import android.view.ViewGroup;
 
 import com.potato.appstore.R;
 import com.potato.appstore.databinding.FragmentAppListBinding;
-import com.potato.appstore.store.data.bean.AppInfo;
-import com.potato.appstore.store.data.parser.AppInfoListParser;
+import com.potato.appstore.store.data.bean.ApkInfo;
+import com.potato.appstore.store.data.parser.ApkInfoListParser;
 import com.potato.appstore.store.data.request.AppStoreRequestBuilder;
+import com.potato.appstore.store.data.request.DataSource;
 import com.potato.appstore.store.ui.adapter.AppListAdapter;
 import com.potato.chips.base.BaseFragment;
-import com.potato.chips.base.BaseListAdapter;
 import com.potato.library.net.Request;
 import com.potato.library.net.RequestManager;
 import com.potato.library.util.L;
 import com.potato.library.view.refresh.ListSwipeLayout;
 
+import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AppListFragment extends BaseFragment {
     private static final String TAG = "ListFragmentJiongtu";
@@ -48,10 +52,18 @@ public class AppListFragment extends BaseFragment {
     public static final String EXTRARS_TITLE = "EXTRARS_TITLE";
     private long mSectionId;
     private String mTitle;
-    private ArrayList<AppInfo> mList = new ArrayList<AppInfo>();
-    private BaseListAdapter mAdapter;
-    private AppInfoListParser mParser;
+    private List mList = new ArrayList<ApkInfo>();
+    private AppListAdapter mAdapter;
+    private ApkInfoListParser mParser;
     private FragmentAppListBinding mBinding;
+
+
+    private static final DecimalFormat DF = new DecimalFormat("0.00");
+
+    /**
+     * Dir: /Download
+     */
+    private final File dir = new File(Environment.getExternalStorageDirectory(), "Download");
 
     @Nullable
     @Override
@@ -67,11 +79,16 @@ public class AppListFragment extends BaseFragment {
                 container,
                 false);
 
-        mParser = new AppInfoListParser();
-        mBinding.swipeContainer.setFooterView(getActivity(), mBinding.list, R.layout.listview_footer);
+        mParser = new ApkInfoListParser("");
+
+
 
         mAdapter = new AppListAdapter(mContext);
+
         mBinding.list.setAdapter(mAdapter);
+
+
+        mBinding.swipeContainer.setFooterView(mContext, mBinding.list, R.layout.listview_footer);
 
         mBinding.swipeContainer.setColorSchemeResources(R.color.google_blue,
                 R.color.google_green,
@@ -102,7 +119,7 @@ public class AppListFragment extends BaseFragment {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.empty_view:
                 mBinding.swipeContainer.showProgress();
                 sendRequest2RefreshList();
@@ -156,7 +173,7 @@ public class AppListFragment extends BaseFragment {
     private void sendRequest2LoadMoreList() {
         L.e(TAG, "请求图册列表:sectionId=" + mSectionId);
 
-        Request request = AppStoreRequestBuilder.getAlbumListRequest(mSectionId, mParser.maxPublicDate);
+        Request request = AppStoreRequestBuilder.getAlbumListRequest(mSectionId, 1000);
         RequestManager.DataLoadListener dataLoadListener = new RequestManager.DataLoadListener() {
 
             @Override
@@ -186,7 +203,8 @@ public class AppListFragment extends BaseFragment {
 
     private void onRefreshSucc(String content) {
         mBinding.swipeContainer.showSucc();
-        mList = mParser.parseToAlbumList(content);
+//        mList = mParser.parseToAlbumList(content);
+        mList = DataSource.getInstance().getData();
         mAdapter.setDataList(mList);
         mAdapter.notifyDataSetChanged();
         mBinding.swipeContainer.setRefreshing(false);
@@ -198,7 +216,8 @@ public class AppListFragment extends BaseFragment {
 
     private void onLoadSucc(String content) {
         mBinding.swipeContainer.setLoading(false);
-        ArrayList<AppInfo> moreData = mParser.parseToAlbumList(content);
+//        ArrayList<ApkInfo> moreData = mParser.parseToAlbumList(content);
+        List moreData = DataSource.getInstance().getData();
         if (moreData == null || moreData.size() == 0) {
             mBinding.swipeContainer.setLoadEnable(false);
             return;
@@ -209,3 +228,4 @@ public class AppListFragment extends BaseFragment {
     }
 
 }
+
