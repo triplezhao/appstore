@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.potato.appstore.R;
+import com.potato.appstore.jiongtu.ui.act.JiongtuActivity;
 import com.potato.appstore.store.ui.act.AppStoreActivity;
 
 public class MainTabActivity extends BaseTabHostActivity {
@@ -35,7 +36,7 @@ public class MainTabActivity extends BaseTabHostActivity {
                 iv_icon.setImageResource(R.drawable.selector_nav_explore);
                 tabItem.setTitle("" + position);
                 tabItem.setView(tabItemView);
-                tabItem.setIntent(new Intent(getApplication(), AppStoreActivity.class));
+                tabItem.setIntent(new Intent(getApplication(), JiongtuActivity.class));
                 break;
             case 2:
 

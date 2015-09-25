@@ -66,9 +66,6 @@
         </activity>
 
         <!--demo-->
-        <activity android:name="com.potato.appstore.a.ui.act.AActivity"></activity>
-        <activity android:name="com.potato.appstore.a.ui.act.BActivity"></activity>
-        <activity android:name="com.potato.appstore.a.ui.act.ADetailActivity"></activity>
 
         <!--jiongtu-->
         <activity android:name="com.potato.appstore.store.ui.act.AppStoreActivity"></activity>
@@ -77,7 +74,6 @@
         <activity android:name="com.potato.appstore.jiongtu.ui.act.JiongTuDetailActivity" android:hardwareAccelerated="true" ></activity>
 
         <!--youku-->
-        <activity android:name="com.potato.appstore.youku.ui.act.YKActivity"  ></activity>
         <activity android:name="com.potato.chips.common.WebViewActivity"  ></activity>
 
         <provider

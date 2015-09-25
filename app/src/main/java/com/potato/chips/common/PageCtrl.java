@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.potato.appstore.jiongtu.data.bean.JiongtuAlbum;
+import com.potato.appstore.jiongtu.ui.act.JiongTuDetailActivity;
 import com.potato.library.util.L;
 
 
@@ -103,6 +105,13 @@ public class PageCtrl {
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         context.startActivity(intent);
     }
-
+    /*
+       EXTRA_ALBUM
+       */
+    public static void startJiongTuDetailActivity(Context context, JiongtuAlbum album){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(JiongTuDetailActivity.EXTRA_ALBUM, album);
+        start(context, JiongTuDetailActivity.class, false, "", bundle);
+    }
 }
 
