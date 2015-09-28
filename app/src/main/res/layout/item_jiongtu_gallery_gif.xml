@@ -8,7 +8,8 @@
             name="bean"
             type="com.potato.appstore.jiongtu.data.bean.JiongtuPhoto" />
     </data>
-    <com.potato.chips.views.MyImageView
+
+    <com.potato.chips.views.GifView
         android:id="@+id/iv_pic"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

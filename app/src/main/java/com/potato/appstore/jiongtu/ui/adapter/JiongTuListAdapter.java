@@ -13,6 +13,7 @@ import com.potato.appstore.databinding.ItemJiongtuListBinding;
 import com.potato.appstore.jiongtu.data.bean.JiongtuAlbum;
 import com.potato.chips.common.PageCtrl;
 import com.potato.chips.util.ImageLoaderUtil;
+import com.potato.chips.util.SPUtils;
 import com.potato.library.adapter.BaseListAdapter;
 import com.potato.library.adapter.BaseViewHolder;
 
@@ -43,6 +44,7 @@ public class JiongTuListAdapter extends BaseListAdapter {
         ItemJiongtuListBinding binding = (ItemJiongtuListBinding) ((VH)holder).getBinding();
         final JiongtuAlbum bean = (JiongtuAlbum)mData.get(position);
         binding.setBean(bean);
+        Context context = binding.getRoot().getContext();
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +52,23 @@ public class JiongTuListAdapter extends BaseListAdapter {
                 PageCtrl.startJiongTuDetailActivity(context, bean);
             }
         });
-        ImageLoaderUtil.displayImage(bean.getBigCover(), binding.ivPic, R.drawable.def_gray_big);
+        binding.tvItemAlbumTitle.setText(bean.getTitle());
+        long aid = SPUtils.read(context,
+                SPUtils.SP_NAME_DEFAULT,
+                SPUtils.SP_KEY_JIONGTU + bean.getId(),
+                -1L);
+        if (aid != -1) {
+            bean.setHaveRead(true);
+            binding.tvItemAlbumTitle.setTextColor(context.getResources().getColor(
+                    R.color.potato_gray3));
+        } else {
+            bean.setHaveRead(false);
+            binding.tvItemAlbumTitle.setTextColor(context.getResources().getColor(
+                    R.color.potato_black));
+        }
+
+
+        ImageLoaderUtil.displayImage(bean.getBigCover(), binding.ivItemAlbumPic, R.drawable.def_gray_big);
     }
 
 

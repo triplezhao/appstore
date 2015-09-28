@@ -4,6 +4,9 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +51,36 @@ public class JiongTuDetailAdapter extends BaseListAdapter {
         final JiongtuPhoto bean = (JiongtuPhoto) mData.get(position);
         binding.setBean(bean);
 //        L.i("Picasso", "URL," + bean.getBigUrl());
+        Context context = binding.getRoot().getContext();
+    // 优先显示content
+
+
+        String content = bean.getContent();
+        if (!TextUtils.isEmpty(content)) {
+            binding.tvItemPhotoDesc.setMovementMethod(LinkMovementMethod
+                    .getInstance());
+            binding.tvItemPhotoDesc.setText(Html.fromHtml(content));
+            binding.tvItemPhotoDesc.setVisibility(View.VISIBLE);
+        }else{
+            binding.tvItemPhotoDesc.setVisibility(View.GONE);
+        }
+
+
+        binding.tvItemPhotoIndex.setText(bean.getIndexOrder() + "");
+        binding.tvItemPhotoTotal.setText(getCount() + "");
+        // 图片
+        String img = null;
+        int type = bean.getType();
+        if (type== 3) {//视频
+            img = bean.getVideoCoverUrl();
+        } else {
+            img = bean.getBigUrl();
+            if(type==2){//GIF
+                binding.ivItemGifFlag.setVisibility(View.VISIBLE);
+            }else{
+                binding.ivItemGifFlag.setVisibility(View.GONE);
+            }
+        }
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +96,7 @@ public class JiongTuDetailAdapter extends BaseListAdapter {
                 return false;
             }
         });
-        ImageLoaderUtil.displayImage(bean.getBigUrl(), binding.ivPic, R.drawable.def_gray_big);
+        ImageLoaderUtil.displayImage(bean.getBigUrl(), binding.ivItemPhoto, R.drawable.def_gray_big);
 
     }
 

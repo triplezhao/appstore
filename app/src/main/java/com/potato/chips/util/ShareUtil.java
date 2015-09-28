@@ -35,6 +35,7 @@ public class ShareUtil {
         intent.putExtra(Intent.EXTRA_TEXT, "分享分享微博");   //附带的说明信息
         intent.putExtra(Intent.EXTRA_SUBJECT, "标题");
         intent.setType("image/*");   //分享图片
+//        intent.setType("image/gif");   //分享图片
         context.startActivity(Intent.createChooser(intent, "分享"));
     }
 

@@ -21,6 +21,7 @@ import com.potato.appstore.jiongtu.data.bean.JiongtuPhoto;
 import com.potato.appstore.jiongtu.ui.adapter.JiongTuAlbumGalleryAdapter;
 import com.potato.chips.base.BaseActivity;
 import com.potato.chips.common.PageCtrl;
+import com.potato.chips.util.ShareUtil;
 import com.potato.chips.util.UIUtils;
 import com.potato.chips.views.MyGallery;
 
@@ -36,7 +37,9 @@ import java.util.List;
 public class AlbumGalleryActivity extends BaseActivity {
 
 
-    /** extrars */
+    /**
+     * extrars
+     */
 //    public final static String EXTRARS_KEY_PIC = "EXTRARS_KEY_PIC";
     public final static String EX_JSONARRAY = "EX_JSONARRAY";
     public final static String EX_INDEX = "EX_INDEX";
@@ -88,6 +91,7 @@ public class AlbumGalleryActivity extends BaseActivity {
     private JiongtuPhoto currentPhoto = null;
     private String currentPicUrl = null;
     private int cp = -1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +101,7 @@ public class AlbumGalleryActivity extends BaseActivity {
         initViews();
         initData();
     }
+
     void setContentView() {
         setContentView(R.layout.activity_jiongtu_album_gallery);
     }
@@ -110,7 +115,7 @@ public class AlbumGalleryActivity extends BaseActivity {
                 finish();
             }
         });
-//        mDownload.setOnClickListener(new OnDownloadClickListener());
+        mDownload.setOnClickListener(this);
         mPages = (TextView) findViewById(R.id.tv_currentIndex);// 页码
         mTotalPages = (TextView) findViewById(R.id.tv_totalPages);
         mGallery = (MyGallery) findViewById(R.id.album_gallery);// Gallery
@@ -131,14 +136,14 @@ public class AlbumGalleryActivity extends BaseActivity {
      * 刷新适配器数据
      */
     private void refresh() {
-            if (mAdapter == null) {
-                mAdapter = new JiongTuAlbumGalleryAdapter(this);
-                mAdapter.setDataList(mList);
-                mGallery.setAdapter(mAdapter);
-            } else {
-                mAdapter.setDataList(mList);
-                mAdapter.notifyDataSetChanged();
-            }
+        if (mAdapter == null) {
+            mAdapter = new JiongTuAlbumGalleryAdapter(this);
+            mAdapter.setDataList(mList);
+            mGallery.setAdapter(mAdapter);
+        } else {
+            mAdapter.setDataList(mList);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -146,7 +151,7 @@ public class AlbumGalleryActivity extends BaseActivity {
         if (first) {
             first = false;
             Intent intent = getIntent();
-            mList = (List<JiongtuPhoto>)intent.getSerializableExtra(EX_JSONARRAY);
+            mList = (List<JiongtuPhoto>) intent.getSerializableExtra(EX_JSONARRAY);
 //            mList =  (JSONArray)intent.getSerializableExtra(EX_JSONARRAY);
             if (mList == null) {
                 urls = (ArrayList<String>) intent.getSerializableExtra("urls");
@@ -166,8 +171,16 @@ public class AlbumGalleryActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-    }
 
+        switch (v.getId()) {
+            case R.id.album_gallery_download:
+               String url = currentPhoto.getBigUrl();
+
+                ShareUtil.shareImage(v.getContext(), url);
+
+                break;
+        }
+    }
 
 
     private class OnGalleryItemSelectedListener implements
@@ -218,7 +231,7 @@ public class AlbumGalleryActivity extends BaseActivity {
     }
 
 
-    public static void startPage(Context from,String jsonarray) {
+    public static void startPage(Context from, String jsonarray) {
         Bundle bundle = new Bundle();
 //        bundle.putSerializable(EX_JSONARRAY, jsonarray);
         bundle.putString(EX_JSONARRAY, jsonarray);
@@ -226,17 +239,15 @@ public class AlbumGalleryActivity extends BaseActivity {
 //       PageCtrl.startForResult(from, OrderObjectActivity.class, false, null, bundle,);
     }
 
-    public static void startPage(Context from,List<JiongtuPhoto> mData,int index) {
+    public static void startPage(Context from, List<JiongtuPhoto> mData, int index) {
         Bundle bundle = new Bundle();
 //        bundle.putSerializable(EX_JSONARRAY, jsonarray);
         bundle.putSerializable(EX_JSONARRAY, (Serializable) mData);
         bundle.putInt(EX_INDEX, index);
 
-        PageCtrl.start(from, AlbumGalleryActivity.class, false,null, bundle);
+        PageCtrl.start(from, AlbumGalleryActivity.class, false, null, bundle);
 //       PageCtrl.startForResult(from, OrderObjectActivity.class, false, null, bundle,);
     }
-
-
 
 
     public void toast(String msg) {
@@ -245,23 +256,23 @@ public class AlbumGalleryActivity extends BaseActivity {
 
     /**
      * Toast提示,默认时长为LENGTH_LONG
+     *
      * @param resId 要toast的文字资源ID
      */
-    public void toast(int resId){
+    public void toast(int resId) {
         toast(getResources().getString(resId));
     }
 
     /**
      * Toast提示
      *
-     * @param msg
-     *            要Toast的文字内容
-     * @param duration
-     *            显示时间,Toast.LENGTH_SHORT/Toast.LENGTH_LONG
+     * @param msg      要Toast的文字内容
+     * @param duration 显示时间,Toast.LENGTH_SHORT/Toast.LENGTH_LONG
      */
     public void toast(String msg, int duration) {
         UIUtils.toast(mContext, msg, duration);
     }
+
     protected <T extends View> T findViews(int ViewId) {
         return (T) findViewById(ViewId);
     }

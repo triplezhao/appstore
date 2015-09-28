@@ -11,29 +11,87 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardPreventCornerOverlap = "false"
-            app:cardUseCompatPadding="true"
             app:cardElevation="5dp"
-            >
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <com.potato.library.view.AutoChangeImageView
-                    android:id="@+id/iv_pic"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    >
-                </com.potato.library.view.AutoChangeImageView>
+                    android:layout_height="wrap_content">
+
+                    <com.potato.library.view.AutoChangeImageView
+                        android:id="@+id/iv_item_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/iv_item_gif_flag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/iv_item_photo"
+                        android:layout_marginTop="10dip"
+                        android:src="@drawable/jiong_gif_corner" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="8dip"
+                        android:layout_marginTop="8dip"
+                        android:background="@drawable/photo_index_bg"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvItemPhotoIndex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textColor="@android:color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/"
+                            android:textColor="@android:color/white" />
+
+                        <TextView
+                            android:id="@+id/tvItemPhotoTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="22"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_item_photo_desc"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:lineSpacingExtra="2dip"
+                        android:textColor="@color/potato_white"
+                        android:background="@color/potato_half_trans"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
