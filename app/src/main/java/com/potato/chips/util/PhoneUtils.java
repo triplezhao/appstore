@@ -10,17 +10,21 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.WindowManager;
 
 import com.potato.chips.app.MainApplication;
 import com.potato.library.util.L;
 
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -299,5 +303,65 @@ public class PhoneUtils {
             L.d("MainApplication_phone_uid==" + IMEI);
         }
         return IMEI;
+    }
+
+    /**
+     * 获取设备分辨率<br>
+     * 依次尝试：<br>
+     * Display.getRawWidth/Height;<br>
+     * Display.getRealWidth/Height;<br>
+     * Display.getRealSize;<br>
+     * PhoneUtils.getAppWidthAndHeight;
+     *
+     * @param context
+     *            上下文
+     *            Display当前Display
+     * @return 包含分辨率的Point对象，x宽，y高
+     */
+    public static Point getRealDeviceResolution(Context context) {
+        Point point = new Point();
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        L.d(TAG, "display:" + display);
+        try {
+            Method method = Display.class
+                    .getDeclaredMethod("getRawWidth", null);
+            point.x = (Integer) method.invoke(display, new Object[] {});
+            method = Display.class.getDeclaredMethod("getRawHeight", null);
+            point.y = (Integer) method.invoke(display, new Object[] {});
+            L.d(TAG, "RawResolution:" + point.toString());
+            return point;
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                Method method = Display.class.getDeclaredMethod("getRealWidth",
+                        null);
+                point.x = (Integer) method.invoke(display, new Object[] {});
+                method = Display.class.getDeclaredMethod("getRealHeight", null);
+                point.y = (Integer) method.invoke(display, new Object[] {});
+                L.d(TAG, "RealResolution:" + point.toString());
+                return point;
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                try {
+                    Method localMethod3 = Display.class.getDeclaredMethod(
+                            "getRealSize", Point.class);
+                    Object[] arrayOfObject3 = new Object[1];
+                    arrayOfObject3[0] = point;
+                    Object localObject = localMethod3.invoke(display,
+                            arrayOfObject3);
+                    Log.e("RealSize", point.toString());
+                    return point;
+                } catch (Exception e3) {
+                    e3.printStackTrace();
+                    DisplayMetrics dm = getAppWidthAndHeight(context);
+                    point.x = dm.widthPixels;
+                    point.y = dm.heightPixels;
+                    L.d(TAG, "DisplayMetrics:" + point.toString());
+                    return point;
+                }
+            }
+        }
     }
 }

@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import com.potato.appstore.R;
 import com.potato.appstore.databinding.ItemJiongtuDetailBinding;
 import com.potato.appstore.jiongtu.data.bean.JiongtuPhoto;
+import com.potato.appstore.jiongtu.ui.act.AlbumGalleryActivity;
 import com.potato.chips.util.ImageLoaderUtil;
 import com.potato.chips.util.ShareUtil;
 import com.potato.library.adapter.BaseListAdapter;
 import com.potato.library.adapter.BaseViewHolder;
+
+import java.util.List;
 
 /**
  * Created by ztw on 2015/9/21.
@@ -48,7 +51,16 @@ public class JiongTuDetailAdapter extends BaseListAdapter {
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//
+                AlbumGalleryActivity.startPage(view.getContext(),
+                        (List<JiongtuPhoto>)mData, mData.indexOf(bean));
+            }
+        });
+        binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
                 ShareUtil.shareImage(view.getContext(), bean.getBigUrl());
+                return false;
             }
         });
         ImageLoaderUtil.displayImage(bean.getBigUrl(), binding.ivPic, R.drawable.def_gray_big);

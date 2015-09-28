@@ -2,6 +2,7 @@ package com.potato.chips.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Point;
 import android.util.DisplayMetrics;
 
 import com.aspsine.multithreaddownload.DownloadConfiguration;
@@ -107,5 +108,18 @@ public class MainApplication extends Application {
         configuration.setMaxThreadNum(10);
         DownloadManager.getInstance().init(getApplicationContext(), configuration);
 
+    }
+
+    public static int SH = 800, SW = 480;
+    private static boolean isScreenSizeInited = false;
+    public static Point getSWAndSH(Context context) {
+        if (!isScreenSizeInited || SW == 0) {
+            Point pp = PhoneUtils.getRealDeviceResolution(context);
+            SH = pp.y;
+            SW = pp.x;
+            isScreenSizeInited = true;
+        }
+        Point p = new Point(SW, SH);
+        return p;
     }
 }

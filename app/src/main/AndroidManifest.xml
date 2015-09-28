@@ -71,6 +71,7 @@
         <activity android:name="com.potato.appstore.store.ui.act.AppStoreActivity"></activity>
         <!--jiongtu-->
         <activity android:name="com.potato.appstore.jiongtu.ui.act.JiongtuActivity"></activity>
+        <activity android:name="com.potato.appstore.jiongtu.ui.act.AlbumGalleryActivity"></activity>
         <activity android:name="com.potato.appstore.jiongtu.ui.act.JiongTuDetailActivity" android:hardwareAccelerated="true" ></activity>
 
         <!--youku-->

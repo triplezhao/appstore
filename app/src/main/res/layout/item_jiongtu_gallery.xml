@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.potato.appstore.jiongtu.data.bean.JiongtuPhoto" />
+    </data>
+
+    <com.potato.chips.views.MyImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"/>
+</layout>

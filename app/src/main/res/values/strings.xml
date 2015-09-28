@@ -22,4 +22,11 @@
     <string name="str_download">下载</string>
     <string name="str_download_pause">已暂停</string>
 
+    <!-- 囧图 -->
+    <string name="jiongtu">内涵囧图</string>
+    <string name="defaultTitle">最近更新</string>
+    <string name="pic_save_succ_toast">图片已成功保存到: %s</string>
+    <string name="pic_has_saved_toast">您已成功保存过这张图片~</string>
+    <string name="pic_save_fail">保存失败</string>
+
 </resources>
