@@ -34,10 +34,10 @@
                     android:layout_height="wrap_content"
                     >
 
-                    <com.potato.library.view.AutoChangeImageView
+                    <ImageView
                         android:id="@+id/iv_item_album_pic"
                         android:layout_width="fill_parent"
-                        android:layout_height="500dp"
+                        android:layout_height="180dp"
                         android:scaleType="fitXY" />
 
                     <LinearLayout android:id="@+id/tv_item_album_count_layout"

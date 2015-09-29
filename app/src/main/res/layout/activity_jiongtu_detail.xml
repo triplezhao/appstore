@@ -57,7 +57,7 @@
                 android:layout_centerVertical="true"
                 android:onClick="onClick"
                 android:padding="10dip"
-                android:src="@drawable/icon_back_arrow_selector" />
+                android:src="@drawable/potato_ic_back" />
         </RelativeLayout>
 
         <FrameLayout
